@@ -63,7 +63,7 @@ app.component("item-detail", {
   <div class="carousel-inner">
    
     <div class="carousel-item" :class="index === 0 ? 'active' : ''" v-for="(creator, index) in tvDetail.created_by">
-      <img :src='"https://image.tmdb.org/t/p/w500"+creator.profile_path' style="width: 40% height:100%; object-fit: cover">
+      <img :src='"https://image.tmdb.org/t/p/w500"+creator.profile_path' style="width: 40% height: 40% object-fit:cover">
       <div class="carousel-caption d-none d-md-block">
         <h5>{{creator.name}}</h5>
         <p>Some representative placeholder content for the second slide.</p>
