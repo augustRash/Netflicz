@@ -34,7 +34,7 @@ app.component('trendingList', {
                                     <rating :rating="movie.vote_average"> </rating>     
                                 </div>
                                 <div class="card-footer text-muted">
-                                            <a :href="'./details.html?id='+movie.id" class="btn btn-primary">More details</a>
+                                    <a :href="'./details.html?id='+movie.id" class="btn btn-primary" >More details</a>
                                 </div>
                         </div>
                         
@@ -50,14 +50,14 @@ app.component('trendingList', {
         }
     },
     mounted() {
-        fetcher('trending/tv/week').then(response => {
+        fetcher('trending/tv/week', { query: this.query }).then(response => {
 
             this.trendingList = response.results
         })
     },
-    methods:{
-        truncate(text){
-            return (text.length > 100) ? text.substr(0, 100-1) + '...' : text;
+    methods: {
+        truncate(text) {
+            return (text.length > 100) ? text.substr(0, 100 - 1) + '...' : text;
 
         }
 
