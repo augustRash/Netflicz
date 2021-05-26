@@ -15,21 +15,24 @@ app.component('search', {
     template:
         /*html*/
         `
-    <div class="input-group input-group-lg">
-        <span class="input-group-text" id="inputGroup-sizing-lg"></span>
-        <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" aria-describedby="inputGroup-sizing-lg" v-model="query" @input="searching">
-        <button class="btn btn-outline-success" @click="searching">Search</button>
+    <nav-bar></nav-bar>
+    <div class="container">
+        <div class="input-group input-group-lg">
+            <span class="input-group-text" id="inputGroup-sizing-lg"></span>
+            <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" aria-describedby="inputGroup-sizing-lg" v-model="query" @input="searching">
+            <button class="btn btn-outline-success" @click="searching">Search</button>
+        </div>
+        <div class="list-group">
+            <p v-if="searchResults==0 && query" class=>Non ci sono risultati</p>
+                <a :href="'./details.html?id='+movie.id" class="list-group-item list-group-item-action" aria-current="true"  v-for="movie in searchResults" class="">{{movie.name}}
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1"></h5>
+                    </div>
+                    <p class="mb-1">{{movie.overview}}</p>
+                </a>
+        </div>
     </div>
     
-    <div class="list-group">
-        <p v-if="searchResults==0 && query" class=>Non ci sono risultati</p>
-            <a :href="'./details.html?id='+movie.id" class="list-group-item list-group-item-action" aria-current="true"  v-for="movie in searchResults" class="">{{movie.name}}
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1"></h5>
-                </div>
-                <p class="mb-1">{{movie.overview}}</p>
-            </a>
-    </div>
      `,
     data() {
 
