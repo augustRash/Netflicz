@@ -23,20 +23,19 @@ app.component('trendingList', {
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     <div v-for="movie in trendingList">
                         <div class="col">
-                            <div class="card">
+                            <div class="card text-center">
                             <img :src="'https://image.tmdb.org/t/p/original'+movie.poster_path" class="card-img-top" style="width:100%; height:300px; object-fit: cover">
-                            <div class="card-body">
-                                
-                                <h5 class="card-title">{{movie.name}}</h5>
-                                <p class="card-text">{{movie.overview}}</p>
-                                <rating :rating="movie.vote_average"> </rating>
-                                <div class="card">     
-                                    <div class="card-footer text-muted">
-                                    <a :href="'./details.html?id='+movie.id" class="btn btn-primary">More details</a>
+                                <div class="card-body">
                                     
-                                    </div>
+                                    <h5 class="card-title">{{movie.name}}</h5>
+                                    
+                                    <p class="card-text">{{ truncate(movie.overview) }}</p>
+                                   
+                                    <rating :rating="movie.vote_average"> </rating>     
                                 </div>
-                            </div>
+                                <div class="card-footer text-muted">
+                                            <a :href="'./details.html?id='+movie.id" class="btn btn-primary">More details</a>
+                                </div>
                         </div>
                         
                     </div>
@@ -55,6 +54,13 @@ app.component('trendingList', {
 
             this.trendingList = response.results
         })
+    },
+    methods:{
+        truncate(text){
+            return (text.length > 100) ? text.substr(0, 100-1) + '...' : text;
+
+        }
+
     }
 
 

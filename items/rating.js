@@ -4,13 +4,15 @@ app.component('rating', {
     },
     template:
         /*html*/
-    `<form>
+    `
         <br>
-        <p>Rating:</p>
-        <div class="container text-warning">     
-            <i v-for="star in stars" :class="star" />
-        </div>
-    </form> 
+        <p>Rating: <span class="container text-warning">     
+                    <i v-for="star in stars" :class="star" >
+                </span>
+        </p> 
+        
+        
+     
     `,
     computed: {
         stars() {
