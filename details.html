@@ -18,13 +18,16 @@
 
 <body>
   <script src="./main.js"></script>
+  <script src="./items/navBar.js"></script>
+  <script src="./component.js"></script>
+  <script src="./items/rating.js"></script>
 
   <div id="app">
+    <nav-bar></nav-bar>
     <h1 align="center"> Details </h1>
     <item-detail></item-detail>
   </div>
-  <script src="./component.js"></script>
-  <script src="./items/rating.js"></script>
+
   <script>
     const mountedApp = app.mount("#app")
   </script>

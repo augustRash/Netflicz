@@ -57,13 +57,14 @@ app.component("item-detail", {
   </ul>
   <div class="card-body">
   
-  </div >
+  </div>
   <h3 v-if="tvDetail.created_by.length">Creatori </h3>
   <div class="card-group" v-if="tvDetail.created_by.length">
   <div class="card" v-for="creator in tvDetail.created_by">
 
-   
-    <img :src='"https://image.tmdb.org/t/p/original"+creator.profile_path' class="rounded mx-auto d-block"  style="max-width: 15rem; " class="card-img-top " alt="...">
+    
+    <img  v-if="creator.profile_path" :src='"https://image.tmdb.org/t/p/original"+creator.profile_path' class="rounded mx-auto d-block"  style="max-width: 15rem; " class="card-img-top " alt="...">
+  
 
     
     <div class="card-body">
