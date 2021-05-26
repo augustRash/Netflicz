@@ -49,48 +49,29 @@ app.component("item-detail", {
     {{companies.name}}
     </span>
     </li>
+    <li class="list-group-item" v-if="tvDetail.homepage">
+
+    <a :href="tvDetail.homepage" target="blank" class="card-link">Link homepage ({{ getHomepage(tvDetail.homepage) }})</a>
+
+    </li>
   </ul>
   <div class="card-body">
-  <a :href="tvDetail.homepage" target="blank" class="card-link">Guarda</a>
-  </div>
-  <div class="card-body">
   
-  </div>
+  </div >
+  <h3 v-if="tvDetail.created_by.length">Creatori </h3>
+  <div class="card-group" v-if="tvDetail.created_by.length">
+  <div class="card" v-for="creator in tvDetail.created_by">
 
-  
-  
-  <div class="card-group">
-  <div class="list-group-item">
-  <span class: v-for="creator in tvDetail.created_by">
-  
-    <img :src='"https://image.tmdb.org/t/p/original"+creator.profile_path' class="card-img-top" alt="...">
+   
+    <img :src='"https://image.tmdb.org/t/p/original"+creator.profile_path' class="rounded mx-auto d-block"  style="max-width: 15rem; " class="card-img-top " alt="...">
+
+    
     <div class="card-body">
+    <div class="card text-center">
       <h5> {{creator.name}} </h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
     </div>
   </div>
-  </span>
-  <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-  <div class="card">
-    <img src="..." class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-</div>
-
-
-
             `,
     data() {
         return {
@@ -102,5 +83,12 @@ app.component("item-detail", {
         
         fetcher('tv/'+  this.search.id).then(detail => this.tvDetail = detail)
 
+    },
+    methods:{
+
+      getHomepage(url){
+      return  url.split('.')[1]
+         
+      }
     }
 })
