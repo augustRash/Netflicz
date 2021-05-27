@@ -40,7 +40,7 @@ app.component('search', {
     },
     methods: {
         searching() {
-            fetcher('search/multi/', { query: this.query }).then(response => {
+            fetcher('search/multi', { query: this.query }).then(response => {
 
                 console.log(response)
                 this.searchResults = response.results
