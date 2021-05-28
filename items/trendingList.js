@@ -62,6 +62,7 @@ app.component('trendingList', {
         }
 
     }
+    
 
 
 

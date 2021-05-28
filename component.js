@@ -1,26 +1,28 @@
 const apiKey = "6f9286d54de4891ea7a5c91779e09786";
 
 const fetcher = (url, options = {}) => {
-    options.api_key = apiKey;
-    options.language = "it-IT";
-    const queryParams = "?" + new URLSearchParams(options).toString();
+  options.api_key = apiKey;
+  options.language = "it-IT";
+  const queryParams = "?" + new URLSearchParams(options).toString();
 
-    return fetch("https://api.themoviedb.org/3/" + url + queryParams)
-        .then((res) => res.json())
-        .catch(console.error);
+  return fetch("https://api.themoviedb.org/3/" + url + queryParams)
+    .then((res) => res.json())
+    .catch(console.error);
 };
 
 app.component("item-detail", {
-    template:
-        /*html*/
-        `
-        <div class='container d-flex justify-content-center'>
-        <div class="card" style="width: 40rem;">
-        <img :src='"https://image.tmdb.org/t/p/w500"+tvDetail.backdrop_path' style="width=50%" class="card-img-top" alt="...">
-            <div class="card-body">
-    <h5 class="card-title">{{tvDetail.name}}</h5>
-    <p class="card-text">{{tvDetail.overview}}</p>
-  </div>
+  template:
+    /*html*/
+    `
+<div class='container d-flex justify-content-center'>
+    <div class="card" style="width: 40rem;">
+      <img :src='"https://image.tmdb.org/t/p/w500"+tvDetail.backdrop_path' style="width=50%" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{tvDetail.name}}</h5>
+          <p class="card-text">{{tvDetail.overview}}</p>
+        </div>
+    </div>
+  </div>        
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
     <span class="badge bg-primary ms-1" v-for="genre in tvDetail.genres">
@@ -55,41 +57,36 @@ app.component("item-detail", {
 
     </li>
   </ul>
-  <div class="card-body">
-  
-  </div>
-  <h3 v-if="tvDetail.created_by.length">Creatori </h3>
-  <div class="card-group" v-if="tvDetail.created_by.length">
-  <div class="card" v-for="creator in tvDetail.created_by">
-
-    
-    <img  v-if="creator.profile_path" :src='"https://image.tmdb.org/t/p/original"+creator.profile_path' class="rounded mx-auto d-block"  style="max-width: 15rem; " class="card-img-top " alt="...">
-  
-
-    
-    <div class="card-body">
-    <div class="card text-center">
-      <h5> {{creator.name}} </h5>
-    </div>
+  <div class="card-body" v-if="length">
+    <h3 v-if="tvDetail.created_by.length">Creatori </h3>
+    <div class="card-group" v-if="tvDetail.created_by.length">
+      <div class="card" v-for="creator in tvDetail.created_by">
+        <img  v-if="creator.profile_path" :src='"https://image.tmdb.org/t/p/original"+creator.profile_path' class="rounded mx-auto d-block"  style="max-width: 15rem; " class="card-img-top " alt="...">
+        <div class="card-body">
+            <div class="card text-center">
+              <h5> {{creator.name}} </h5>
+            </div>
+          </div>  
+      </div>
     </div>
   </div>
-            `,
-    data() {
-        return {
-            search: Object.fromEntries(new URLSearchParams(location.search)),
-            tvDetail: {}
-        }
-    },
-    mounted() {
-        
-        fetcher('tv/'+  this.search.id).then(detail => this.tvDetail = detail)
-
-    },
-    methods:{
-
-      getHomepage(url){
-      return  url.split('.')[1]
-         
-      }
+  `,
+  data() {
+    return {
+      search: Object.fromEntries(new URLSearchParams(location.search)),
+      tvDetail: {}
     }
+  },
+  mounted() {
+
+    fetcher(this.search.type + '/' + this.search.id).then(detail => this.tvDetail = detail)
+
+  },
+  methods: {
+
+    getHomepage(url) {
+      return url.split('.')[1]
+
+    }
+  }
 })

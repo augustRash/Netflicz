@@ -23,13 +23,8 @@ app.component('search', {
             <button class="btn btn-outline-success" @click="searching">Search</button>
         </div>
         <div class="list-group">
-            <p v-if="searchResults==0 && query" class=>Non ci sono risultati</p>
-                <a :href="'./details.html?id='+movie.id" class="list-group-item list-group-item-action" aria-current="true"  v-for="movie in searchResults" class="">{{movie.name}}
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"></h5>
-                    </div>
-                    <p class="mb-1">{{movie.overview}}</p>
-                </a>
+            <p v-if="searchResults==0 && query" class=''>Non ci sono risultati</p>
+            <search-spec  v-for="movie in searchResults" :item="movie"/>
         </div>
     </div>
     
