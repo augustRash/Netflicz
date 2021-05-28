@@ -24,7 +24,7 @@ app.component('trendingList', {
                     <div v-for="movie in trendingList">
                         <div class="col">
                             <div class="card text-center">
-                            <img :src="'https://image.tmdb.org/t/p/original'+movie.poster_path" class="card-img-top" style="width:100%; height:300px; object-fit: cover">
+                                <img :src="'https://image.tmdb.org/t/p/original'+movie.poster_path" class="card-img-top" style="width:100%; height:300px; object-fit: cover">
                                 <div class="card-body">
                                     
                                     <h5 class="card-title">{{movie.name}}</h5>
@@ -33,9 +33,9 @@ app.component('trendingList', {
                                    
                                     <rating :rating="movie.vote_average"> </rating>     
                                 </div>
-                                <div class="card-footer text-muted">
-                                    <a :href="'./details.html?id='+movie.id" class="btn btn-primary" >More details</a>
-                                </div>
+                                    <div class="card-footer text-muted">
+                                        <a :href="'./details.html?id='+movie.id  + '&type=tv'" class="btn btn-primary" >More details</a>
+                            </div>  </div>
                         </div>
                         
                     </div>
