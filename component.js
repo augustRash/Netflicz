@@ -17,12 +17,10 @@ app.component("item-detail", {
 <div class='container d-flex justify-content-center'>
     <div class="card" style="width: 40rem;">
       <img :src='"https://image.tmdb.org/t/p/w500"+tvDetail.backdrop_path' style="width=50%" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{tvDetail.name}}</h5>
-          <p class="card-text">{{tvDetail.overview}}</p>
-        </div>
-    </div>
-  </div>        
+    </div>  
+  </div>
+  <h5 class="card-title">{{tvDetail.name}}</h5>
+    <p class="card-text">{{tvDetail.overview}}</p>        
   <ul class="list-group list-group-flush">
     <li class="list-group-item">
     <span class="badge bg-primary ms-1" v-for="genre in tvDetail.genres">
