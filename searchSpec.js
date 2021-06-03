@@ -15,10 +15,9 @@ app.component('searchSpec', {
     `,
     computed: {
         itemLink() {
-            debugger
-            return './details.html?id=' + this.item.id +'&type=' + this.item.media_type
+            return './details.html?id=' + this.item.id + '&type=' + this.item.media_type
 
-            
+
         }
     }
 
