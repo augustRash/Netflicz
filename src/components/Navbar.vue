@@ -21,7 +21,7 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             
-            >
+            
           <router-link to="/" class="btn btn-primary">Home</router-link>
 
           </li>
